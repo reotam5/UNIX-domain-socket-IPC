@@ -72,6 +72,7 @@ class Server:
         finally:
             print('closing socket...')
             self.socket.close()
+            self.__unlink_if_exists()
 
 
 if __name__ == "__main__":
