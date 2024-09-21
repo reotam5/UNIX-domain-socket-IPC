@@ -56,15 +56,21 @@ class Server:
             self.__bind_socket()
             self.__listen_socket()
 
-            while True:
+            while True: 
+                print('Waiting connection request...')
                 connection, _ = self.socket.accept()
                 try:
                     data = receive_data(connection)
                     send_data(connection, self.__get_file_permission(data))
+                except BrokenPipeError:
+                    print("Client is no longer available. Now open for another connection...")
+                    pass
                 finally:
+                    print('closing connection...')
                     connection.close()
 
         finally:
+            print('closing socket...')
             self.socket.close()
 
 
