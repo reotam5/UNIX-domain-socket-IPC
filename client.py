@@ -32,6 +32,8 @@ class Client:
 
     @try_except_wrapper("Unnable to send data over a socket.")
     def __send_data(self):
+        if not self.request_path or len(self.request_path) == 0:
+            raise ValueError("Given path is empty")
         send_data(self.socket, self.request_path)
 
     @try_except_wrapper("Unnable to receive data from a socket.")
