@@ -50,6 +50,11 @@ class Server:
         self.socket.listen(SOCKET_BACKLOG)
 
     def start(self):
+        if os.path.isdir(self.socket_path):
+            exit('socket_path cannot be a directory.')
+        elif os.path.isfile(self.socket_path):
+            exit('socket_path already exists.')
+
         try:
             self.__unlink_if_exists()
             self.__create_socket()
