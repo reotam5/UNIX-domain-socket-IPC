@@ -61,7 +61,9 @@ class Server:
                 connection, _ = self.socket.accept()
                 try:
                     data = receive_data(connection)
+                    print('Data recieved...')
                     send_data(connection, self.__get_file_permission(data))
+                    print('Sent response...')
                 except BrokenPipeError:
                     print("Client is no longer available. Now open for another connection...")
                     pass

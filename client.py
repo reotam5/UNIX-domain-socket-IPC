@@ -42,7 +42,7 @@ class Client:
     def __handle_response(self, response_data):
         if self.__is_valid_permission_set(response_data):
             print(
-                "Permission details of {file}: {permissions}".format(
+                "File: {file}\nPermission: {permissions}".format(
                     file=self.request_path, permissions=response_data
                 )
             )
